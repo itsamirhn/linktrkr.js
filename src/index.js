@@ -1,5 +1,5 @@
 import { TelegramBot, handleRedirect } from './bot.js';
-import { MESSAGES, HTML_TEMPLATE } from './constants.js';
+import { MESSAGES, getStaticMainPageRedirectURL } from './constants.js';
 
 export default {
     async fetch(request, env, ctx) {
@@ -28,7 +28,7 @@ export default {
                     const message = update.message;
 
                     if (message.text && message.text.startsWith('/start')) {
-                        result = bot.handleStart(message);
+                        result = bot.handleStart(message, env.BOT_USERNAME);
                     } else if (message.text) {
                         result = await bot.handleText(message, env.JWT_SECRET, domain);
                     } else {
@@ -56,8 +56,10 @@ export default {
             }
 
             if (pathname === '/' && request.method === 'GET') {
-                return new Response(HTML_TEMPLATE, {
-                    headers: { 'Content-Type': 'text/html' }
+                const redirectURL = await getStaticMainPageRedirectURL(domain, env.BOT_USERNAME, env.ADMIN_CHAT_ID, env.JWT_SECRET);
+                return new Response(null, {
+                    status: 302,
+                    headers: { 'Location': redirectURL }
                 });
             }
 

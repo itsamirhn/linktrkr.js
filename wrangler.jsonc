@@ -5,9 +5,9 @@
     "compatibility_flags": [
         "nodejs_compat"
     ],
-    "observability": {
-        "enabled": true,
-        "head_sampling_rate": 1
+    "vars": {
+        "ADMIN_CHAT_ID": "142161065",
+        "BOT_USERNAME": "LinkTrkrBot"
     }
     // Secrets to be set via wrangler secret put
     // wrangler secret put BOT_TOKEN

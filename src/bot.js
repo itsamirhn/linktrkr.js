@@ -25,10 +25,10 @@ export class TelegramBot {
         return { method, ...parameters };
     }
 
-    handleStart(message) {
+    handleStart(message, botUsername) {
         return this.createWebhookResponse('sendMessage', {
             chat_id: message.chat.id,
-            text: MESSAGES.WELCOME,
+            text: MESSAGES.WELCOME(botUsername),
             reply_to_message_id: message.message_id
         });
     }
@@ -129,15 +129,15 @@ export class TelegramBot {
             let stats = '';
 
             if (clickData.ip && clickData.ip !== 'Unknown') {
-                stats += `🌐IP: <b>${clickData.ip}</b>\\n`;
+                stats += `🌐IP: <b>${clickData.ip}</b>\n`;
             }
 
             if (clickData.userAgent && clickData.userAgent !== 'Unknown') {
-                stats += `📱User-Agent: <b>${clickData.userAgent}</b>\\n`;
+                stats += `📱User-Agent: <b>${clickData.userAgent}</b>\n`;
             }
 
             if (clickData.referer) {
-                stats += `🔗Referer: <b>${clickData.referer}</b>\\n`;
+                stats += `🔗Referer: <b>${clickData.referer}</b>\n`;
             }
 
             if (stats === '') {
@@ -174,7 +174,7 @@ export async function handleRedirect(request, slug, jwtSecret, bot) {
             timestamp: new Date().toISOString()
         };
 
-        bot.sendClickNotification(redirectData.chat_id, clickData);
+        await bot.sendClickNotification(redirectData.chat_id, clickData);
 
         return Response.redirect(redirectData.url, 302);
     } catch (error) {
