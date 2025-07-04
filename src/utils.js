@@ -1,4 +1,5 @@
-// Validate URL format
+import { SignJWT, jwtVerify } from 'jose';
+
 export function isValidURL(string) {
     try {
         const url = new URL(string);
@@ -8,12 +9,10 @@ export function isValidURL(string) {
     }
 }
 
-// Get redirect URL
 export function getRedirectURL(domain, slug) {
     return `https://${domain}/r/${slug}`;
 }
 
-// Extract IP from request headers (considering Cloudflare headers)
 export function getClientIP(request) {
     return request.headers.get('CF-Connecting-IP') ||
         request.headers.get('X-Forwarded-For') ||
@@ -21,12 +20,26 @@ export function getClientIP(request) {
         'Unknown';
 }
 
-// Get user agent from request
 export function getUserAgent(request) {
     return request.headers.get('User-Agent') || 'Unknown';
 }
 
-// Get referer from request
 export function getReferer(request) {
     return request.headers.get('Referer') || request.headers.get('Referrer') || '';
+}
+
+export async function encodeJWT(data, secretKey) {
+    const secret = new TextEncoder().encode(secretKey);
+    const payload = { data: JSON.stringify(data) };
+
+    return await new SignJWT(payload)
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .sign(secret);
+}
+
+export async function decodeJWT(tokenString, secretKey) {
+    const secret = new TextEncoder().encode(secretKey);
+    const { payload } = await jwtVerify(tokenString, secret);
+    return JSON.parse(payload.data);
 } 

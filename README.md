@@ -1,6 +1,6 @@
 # LinkTrkr.js
 
-JavaScript version of [LinkTrkr](https://github.com/itsamirhn/linktrkr) - A Telegram bot for tracking link clicks, deployable on Cloudflare Workers.
+This is a fully AI-generated JavaScript conversion of the original [LinkTrkr](https://github.com/itsamirhn/linktrkr) Go project, designed to be deployed for free on Cloudflare Workers.
 
 ## Quick Start
 
