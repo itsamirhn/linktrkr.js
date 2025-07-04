@@ -35,3 +35,6 @@ This is a fully AI-generated JavaScript conversion of the original [LinkTrkr](ht
      -H "Content-Type: application/json" \
      -d '{"url": "YOUR_WORKER_URL", "secret_token": "YOUR_WEBHOOK_SECRET"}'
    ```
+
+## LICENSE
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
