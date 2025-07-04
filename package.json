@@ -1,0 +1,27 @@
+{
+    "name": "linktrkr-js",
+    "version": "1.0.0",
+    "description": "JavaScript version of LinkTrkr - A Telegram bot for tracking link clicks",
+    "main": "src/index.js",
+    "scripts": {
+        "dev": "wrangler dev",
+        "deploy": "wrangler deploy",
+        "tail": "wrangler tail"
+    },
+    "keywords": [
+        "telegram",
+        "bot",
+        "link",
+        "tracker",
+        "cloudflare",
+        "workers"
+    ],
+    "author": "AmirMohammad HosseiniNasab",
+    "license": "MIT",
+    "dependencies": {
+        "jose": "^5.0.0"
+    },
+    "devDependencies": {
+        "wrangler": "^4.0.0"
+    }
+}

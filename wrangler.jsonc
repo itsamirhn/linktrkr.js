@@ -1,0 +1,16 @@
+{
+    "name": "linktrkr",
+    "main": "src/index.js",
+    "compatibility_date": "2024-01-01",
+    "compatibility_flags": [
+        "nodejs_compat"
+    ],
+    "observability": {
+        "enabled": true,
+        "head_sampling_rate": 1
+    }
+    // Secrets to be set via wrangler secret put
+    // wrangler secret put BOT_TOKEN
+    // wrangler secret put JWT_SECRET
+    // wrangler secret put WEBHOOK_SECRET
+}
