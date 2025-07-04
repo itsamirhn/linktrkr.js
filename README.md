@@ -1,4 +1,4 @@
-# LinkTrkr.js
+# LinkTrkr - JavaScript Version
 
 This is a fully AI-generated JavaScript conversion of the original [LinkTrkr](https://github.com/itsamirhn/linktrkr) Go project, designed to be deployed for free on Cloudflare Workers.
 
